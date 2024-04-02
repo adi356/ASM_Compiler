@@ -7,15 +7,7 @@
 
 ## Known tests that are failing
 
-My logic seems to be messed up for recognizing LOAD which is causing the output for every test to be incorrect
-
-Not properly pushing and popping to the stack
-
-Problem with INn (?)
-
-Failing the second test file due to a static semantics error -> slightly edited test to find error still failing
-
-UPDATE: got it to recognize load, stack operation logic still seems incorrect but at least outputing correct number in VirtMach for some tests (NOT all)
+Failing with test2, seems to be calling a semanaticsError but still giving ASM output, just calling READ incorrectly. Everything else seems to be in working order.
 
 ## Task
 
