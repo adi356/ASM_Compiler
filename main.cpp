@@ -46,9 +46,9 @@ int main(int argc, char *argv[]) {
         }
     }
 
-	std::cout << "\nSource Program:\n" << input << "\nParse Tree Output: \n";
+	std::cout << "\nSource Program:\n" << input;
 	node *root = parser(input);
-	traversePreorder(root, 0);
+	//traversePreorder(root, 0);
 	bool semanticsError = staticSemantics(root, 0);
     if(semanticsError) {
         cout << "SEMANTICS ERROR returned.\n";
