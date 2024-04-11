@@ -100,7 +100,7 @@ node *VarList(Scanner *scanner){
 node *Exp(Scanner *scanner){
     node *node = createNode(EXPn);
 
-    node-> child1 = M(scanner);   // Create <M> 
+    node-> child1 = M(scanner);
 
     if (tk.value == "/" || tk.value == "*"){
         node-> tk1 = tk;
@@ -115,7 +115,7 @@ node *Exp(Scanner *scanner){
 node *M(Scanner *scanner){
     node *node = createNode(Mn);
 
-    node-> child1 = N(scanner);  // Create <N>
+    node-> child1 = N(scanner); 
 
     if (tk.value == "+"){
         node-> tk1 = tk;
@@ -130,13 +130,13 @@ node *M(Scanner *scanner){
 node *N(Scanner *scanner){
     node *node = createNode(Nn);
 
-    if (tk.value == "~"){   // ~ <N>
+    if (tk.value == "~"){ 
         node-> tk1 = tk;
         tk = (*scanner).getNext();
         node-> child1 = N(scanner);
-    } else {                // <R> - <N> || <R> case
-        node-> child1 = R(scanner); // This will advance tk, we don't need to 
-        if (tk.value == "-"){    // <R> - <N> case
+    } else {                
+        node-> child1 = R(scanner); 
+        if (tk.value == "-"){    
             node-> tk1 = tk;
             tk = (*scanner).getNext();
             node-> child2 = N(scanner); 
@@ -175,7 +175,7 @@ node *Stats(Scanner *scanner){
 }
 
 // <mStat> -> empty | <stat> <mStat> 
-node *Mstat(Scanner *scanner){   // I think this code is good but too early to test
+node *Mstat(Scanner *scanner){   
     node *node = createNode(MSTATn);
     if (tk.value == "xin" || tk.value == "xout" || tk.value == "{" || 
     tk.value == "xcond" || tk.value == "xloop" || tk.value == "xlet"){
@@ -261,7 +261,7 @@ node *Out(Scanner *scanner){
     }
     tk = (*scanner).getNext();
 
-    node-> child1 = Exp(scanner);    // <EXP>
+    node-> child1 = Exp(scanner);   
 
     if (tk.value != ";") {
         error(";");       
