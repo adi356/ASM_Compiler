@@ -8,6 +8,8 @@
 #include "scanner.h"
 #include "testTree.h" 
 #include "parser.h" 
+#include "staticSemantics.h"
+#include "compiler.h"
 
 using namespace std; 
 
@@ -16,30 +18,30 @@ int main(int argc, char *argv[]) {
 	std::ifstream inputFile;
 	std::string input;
 	
-	if (argc > 2) {    //If too many args provided
+	if (argc > 2) {    
         std::cerr << "Too many arguments" << std::endl;
         return 1;
-    } else if (argc == 1) {        //  If no args are provided, read stdin
+    } else if (argc == 1) {        
         std::cout << "Needs to read from keyboard..." << std::endl;
         std::string line;
 
         while (std::getline(std::cin, line)) {
-            input += line + '\n';  // store stdin in input string
+            input += line + '\n';  
         } 
         outputFileName = "a.asm";
     } else {
-        outputFileName = std::string(argv[1]) + ".asm";   // name outfile after input file
-        std::string filename = std::string(argv[1]) + ".f23"; // append .f23 to filename
+        outputFileName = std::string(argv[1]) + ".asm";   
+        std::string filename = std::string(argv[1]) + ".f23"; 
         inputFile.open(filename);
         if (!inputFile) {
-            std::cerr << "Can't open file..." << std::endl;  // error checking file
+            std::cerr << "Can't open file..." << std::endl;  
             return 1;
         } else {
             std::cout << "File opened successfully!" << std::endl;  
 
 	        std:: string line;       
             while (std::getline(inputFile, line)) {
-                input += line + '\n';   // Store input file in input string
+                input += line + '\n';   
             }     
         }
     }
@@ -52,24 +54,24 @@ int main(int argc, char *argv[]) {
         cout << "SEMANTICS ERROR returned.\n";
         return 0;
     }
-    FILE *outFile = fopen(outputFileName.c_str(), "w");  // open file for asm code generation 
+    FILE *outFile = fopen(outputFileName.c_str(), "w"); 
     if(!outFile){
         cout << ".asm file creation failed";
         return 0;
     }
-    recGen(root, outFile);          // recursive asm code generation from tree
-    fclose(outFile);        // close file
+    recGen(root, outFile);          
+    fclose(outFile);        
 
-    outFile = fopen(outputFileName.c_str(), "r");      // reopen file for reading
+    outFile = fopen(outputFileName.c_str(), "r");    
     if (!outFile) {
         std::cout << "Failed to reopen file for reading" << std::endl;
         return 1;
     }
 
     int character;
-    while ((character = fgetc(outFile)) != EOF)     // print file contents
+    while ((character = fgetc(outFile)) != EOF)     
         putchar(character);    
-    fclose(outFile);        // close file
+    fclose(outFile);       
     return 0;
 }
 

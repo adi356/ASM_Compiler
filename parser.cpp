@@ -371,7 +371,7 @@ node *parser(string input) {
 }
 
 void error(string expected) {
-	cout << "ERROR: line " << tk.line << ": " << expected << " tk expected";
+	cout << "ERROR: line " << tk.line << ": " << expected << " tk expected ";
 	cout << tk.value << " token was received instead";
 	exit(1);
 }

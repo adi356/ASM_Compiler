@@ -137,7 +137,7 @@ class Scanner {
 				return isalnum(c) && islower(c);
 			}
 			bool isOperator(char c) {
-				std::string operators = "=<>~:;+-*/%.(),{}[]";
+				std::string operators = ":<>=~+-*/;%.,()[]{}";
 				return operators.find(c) != std::string::npos;
 			}
 

@@ -5,6 +5,7 @@
 
 #include "scanner.h"
 
+
 using namespace std; 
 
 enum node_t { 
@@ -39,16 +40,14 @@ struct node {
 
 typedef enum {VAR, LABEL} nameType;
 
+
+
 node * createNode(node_t label);
 void traversePreorder(node *n, int depth);
 void printNode(node *n, int depth);
-void insert(Scanner::Token tk, string label);
-void verify(Scanner::Token tk, string label);
-bool staticSemantics(node *n, int depth);
-static char *newName(nameType what);
-void recGen(node *n, FILE *out);
 
-// static char *newName(nameType what);
-// void recGen(node *n, FILE *out);
+
+
+
 
 #endif
